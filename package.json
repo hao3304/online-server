@@ -46,12 +46,13 @@
       "name": "online-server",
       "description": "application created by thinkjs",
       "author": "hao3304 <hao3304@qq.com>",
-      "babel": true
+      "babel": true,
+      "defaultModule": "home"
     },
     "projectName": "online-server",
     "templateName": "C:\\Users\\jack\\AppData\\Roaming\\npm\\node_modules\\think-cli\\default_template",
     "cacheTemplatePath": "C:\\Users\\jack\\.think-templates\\C--Users-jack-AppData-Roaming-npm-node_modules-think-cli-default_template",
     "clone": false,
-    "isMultiModule": false
+    "isMultiModule": true
   }
 }
