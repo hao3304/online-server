@@ -1,0 +1,50 @@
+{% extends "../template/base.html" %}
+
+{% block content %}
+<form class="layui-form" action="" style="margin: 10px;">
+<div class="layui-form-item">
+  <label class="layui-form-label">key</label>
+  <div class="layui-input-block">
+    <input type="nu" name="key" lay-verify="required" placeholder="请输入" class="layui-input">
+  </div>
+</div>
+<div class="layui-form-item">
+  <label class="layui-form-label">value</label>
+  <div class="layui-input-block">
+    <input type="text" name="value" lay-verify="required" placeholder="请输入"  class="layui-input">
+  </div>
+</div>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+  </div>
+</div>
+</form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    layui.use(['form','jquery'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var filed = 'school';
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            $.post('/admin/common/add', $.extend(data.field, {field:filed}), function (rep) {
+                if(rep.errno == 0) {
+                    parent.closeModal('submit');
+                }else{
+                    layer.alert(rep.errmsg);
+                }
+            },'json')
+
+
+            return false;
+        });
+
+
+    });
+</script>
+{% endblock %}

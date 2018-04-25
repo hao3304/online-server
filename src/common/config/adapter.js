@@ -40,9 +40,9 @@ exports.model = {
         database: 'online',
         prefix: '',
         encoding: 'utf8',
-        host: '127.0.0.1',
+        host: '116.62.211.9',
         port: '3306',
-        user: 'root',
+        user: 'admin',
         password: 'hao3304',
         dateStrings: true
     }

@@ -1,0 +1,89 @@
+{% extends "../template/base.html" %}
+
+{% block content %}
+  <div  >
+    <div class="layui-card" style="margin: 10px">
+      <div class="layui-card-header">
+        <!--<button class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon"></i></button>-->
+        新增学生信息
+      </div>
+      <div class="layui-card-body">
+        <form class="layui-form layui-form-pane" method="post" >
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+              <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+              <input type="password" name="password" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>详细信息</legend>
+          </fieldset>
+          <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+              <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-inline">
+              <input type="number" name="age" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item" pane="">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+              <input type="radio" name="sex" value="1" title="男" checked="">
+              <input type="radio" name="sex" value="0" title="女">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">学校</label>
+            <div class="layui-input-block">
+              <select name="school" >
+                <option value=""></option>
+                {% for s in school %}
+                <option value="{{s.key}}">{{s.value}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="*">立即提交</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              <a href="javascript:window.history.go(-1)"  class="layui-btn" >取消</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+  layui.use(['layer','form','jquery'], function () {
+      var form = layui.form;
+      var $ = layui.jquery;
+      var layer = layui.layer;
+      form.on('submit(*)', function (data) {
+          $.post(ACTION, data.field).success(function (rep) {
+              if(rep.errno !=0) {
+                 layer.alert(rep.errmsg);
+              }else{
+                  window.history.go(-1);
+              }
+          })
+          return false;
+      })
+  })
+
+</script>
+{% endblock %}

@@ -1,4 +1,5 @@
-/**
+/** kit_admin-v1.1.0 MIT License By http://kit/zhengjinfan.cn e-mail:zheng_jinfan@126.com */
+ ;/**
  * Name:tab.js
  * Author:Van
  * E-mail:zheng_jinfan@126.com
@@ -19,7 +20,7 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
     var Tab = function() {
         this.config = {
             elem: undefined,
-            mainUrl: '/admin/main.html',
+            mainUrl: 'main.html',
             renderType: 'iframe',
             openWait: false
         };

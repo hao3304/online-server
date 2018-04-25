@@ -1,0 +1,80 @@
+{% extends "../template/base.html" %}
+
+{% block content %}
+  <div style="margin: 10px;">
+    <div class="layui-tab layui-tab-card">
+      <ul class="layui-tab-title">
+        <li class="layui-this">学校管理</li>
+      </ul>
+      <div class="layui-tab-content" style="background-color: #fff">
+        <div class="layui-tab-item layui-show">
+          <table class="layui-table" lay-filter="common-table">
+            <thead>
+            <tr>
+              <th >标识</th>
+              <th >名称</th>
+              <th >操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for d in data %}
+                <tr>
+                  <td>{{d.key}}</td>
+                  <td>{{d.value}}</td>
+                  <td>
+                    <button common="delete" id="{{d.id}}" class="layui-btn-xs layui-btn layui-btn-danger">删除</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div>
+            <button class="layui-btn" id="btn-add" >新增</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    layui.use(['element','table', 'jquery','form', 'layer'], function(){
+        var element = layui.element;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        //执行渲染
+        var field = 'school';
+
+        
+        function bindEvent() {
+            $('#btn-add').on('click', function () {
+                showModal();
+            })
+        }
+
+        function showModal() {
+            layer.open({
+                type: 2,
+                title: '字段管理',
+                area: ['400px','230px'],
+                content: '/admin/common/add' //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+        }
+
+        window.closeModal = function(type){
+            layer.closeAll();
+            if(type == 'submit') {
+                window.location.reload();
+            }
+        };
+
+        (function init() {
+           bindEvent();
+        })();
+
+    });
+</script>
+{% endblock %}

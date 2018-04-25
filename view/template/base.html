@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/static/src/css/app.css" media="all" />
     <link rel="stylesheet" href="/static/src/css/themes/default.css" media="all" id="skin" kit-skin />
     {% block header %} {% endblock %}
+
+    <script>
+        var CONTROLLER ="/{{ctx.module}}/{{ctx.controller}}";
+        var ACTION = "/{{ctx.module}}/{{ctx.controller}}/{{ctx.action}}";
+    </script>
 </head>
 
 <body class="kit-theme">
@@ -20,6 +25,7 @@
 
 <script src="/static/plugins/polyfill.min.js"></script>
 <script src="/static/plugins/layui/layui.js"></script>
+<script src="/static/js/main.js"></script>
 
 {% block script %} {% endblock %}
 

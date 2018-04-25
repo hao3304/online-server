@@ -309,13 +309,14 @@ button {
     width: 60px;
     height: 40px;
     top: 0;
-    right: 10px;
+    right: 0;
     border-bottom: 1px solid #e2e2e2;
     border-left: 1px solid #e2e2e2;
     line-height: 40px;
     text-align: center;
     cursor: pointer;
     border-right: 1px solid #e2e2e2;
+    background-color: #fff;
 }
 
 .kit-tab .kit-tab-tool:hover {
@@ -353,10 +354,11 @@ button {
 }
 
 .kit-tab .layui-tab-title {
-    width: calc(100% - 71px);
+    width: calc(100% - 61px);
     padding-right: 0;
     position: absolute;
     z-index: 2;
+    background-color: #fff;
 }
 
 .kit-tab .layui-tab-content {
