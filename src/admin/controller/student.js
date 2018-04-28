@@ -49,7 +49,7 @@ module.exports = class extends Base {
 
     async deleteAction() {
         if(this.isPost) {
-            const { id } = this.post();
+            const id = this.get('id');
             if(id) {
                 let student = this.model('student');
                 let user = this.model('user');
@@ -63,7 +63,18 @@ module.exports = class extends Base {
 
     }
 
-    async editAction() {}
+    async editAction() {
+        if(this.isGet){
+            const id = this.get('id');
+            const user = this.model('user');
+            const student = this.model('student');
+            const data = await student.where({id:id}).find();
+            const user_data = await user.where({type:1, info_id: id}).find();
+            this.assign('data', data);
+            this.assign('user_data', user_data);
+            return this.display('admin/student_manage');
+        }
+    }
 
 
 };

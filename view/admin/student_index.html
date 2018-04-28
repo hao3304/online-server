@@ -29,7 +29,6 @@
   layui.use(['table','jquery'], function () {
       var table = layui.table;
       var $ = layui.jquery;
-
       table.render({
           elem:"#student-table",
           method: 'post',
@@ -56,9 +55,8 @@
           if(obj.event == 'del') {
               var index = layer.confirm('确定删除该数据?', {icon: 3, title:'提示'}, function(index){
                   $.ajax({
-                      url:CONTROLLER + '/delete',
+                      url:CONTROLLER + '/delete/' + obj.data.id,
                       type:'post',
-                      data: {id: obj.data.id },
                       success: function (rep) {
                           layer.close(index);
                           if(rep.errno == 0) {
@@ -70,6 +68,8 @@
                   })
                   layer.close(index);
               });
+          }else if(obj.event == 'edit') {
+              window.location.href = CONTROLLER + '/edit/' + obj.data.id;
           }
       })
   })

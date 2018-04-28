@@ -6,9 +6,8 @@ layui.use(['jquery','layer'], function () {
             //do something
 
             $.ajax({
-                url:CONTROLLER + '/delete',
+                url:CONTROLLER + '/delete/' + e.target.id,
                 type:'post',
-                data: {id:e.target.id},
                 success: function (rep) {
                     layer.close(index);
                     if(rep.errno == 0) {

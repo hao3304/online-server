@@ -30,7 +30,7 @@ module.exports = class extends Base {
 
    async deleteAction() {
     if(this.isPost) {
-        const {id} = this.post();
+        const id = this.get('id');
         if(id) {
             const commonModel = this.model('common');
             await commonModel.where({id:id}).delete();
